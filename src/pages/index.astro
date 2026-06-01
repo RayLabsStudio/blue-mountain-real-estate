@@ -280,9 +280,26 @@ const servicesLd = services.map((s) =>
             representation on every transaction. Member of the state and national associations.
           </p>
           <div class="channel__value-row">
-            <div class="channel__value channel__value--phone" aria-label={`Member ${SITE.brokerage.membership}`}>
-              <span>{SITE.brokerage.membership}</span>
+            <div class="channel__value channel__value--phone" aria-label={`Florida brokerage license ${SITE.brokerage.license}`}>
+              <span>{SITE.brokerage.license}</span>
             </div>
+            <button
+              type="button"
+              class="channel__copy"
+              data-copy={SITE.brokerage.license}
+              aria-label={`Copy license number ${SITE.brokerage.license}`}
+              title="Copy to clipboard"
+            >
+              <svg class="channel__copy-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+                <rect x="9" y="9" width="13" height="13" rx="2" ry="2" />
+                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
+              </svg>
+              <svg class="channel__copy-check" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <path d="M5 13 L9 17 L19 7" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+              <span class="vh">Copy license number</span>
+              <span class="channel__copy-toast" aria-hidden="true">Copied</span>
+            </button>
           </div>
           <dl class="channel__meta">
             <div>
@@ -290,8 +307,8 @@ const servicesLd = services.map((s) =>
               <dd>{SITE.brokerage.description}</dd>
             </div>
             <div>
-              <dt>License</dt>
-              <dd>{SITE.brokerage.license}</dd>
+              <dt>Member</dt>
+              <dd>{SITE.brokerage.membership}</dd>
             </div>
             <div>
               <dt>Coverage</dt>

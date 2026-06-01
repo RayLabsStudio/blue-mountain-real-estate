@@ -14,10 +14,10 @@ const NAV = [
     <a class="brand" href="/" aria-label={`${SITE.name} — home`}>
       <img
         class="brand__logo"
-        src="/logo.png"
+        src="/logo-nav.png"
         alt={SITE.name}
-        width="320"
-        height="213"
+        width="256"
+        height="96"
         decoding="async"
       />
     </a>
@@ -96,9 +96,10 @@ const NAV = [
   }
 
   .brand__logo {
-    /* Height-bound, width auto — preserves the logo's native 320:213 ratio.
+    /* Height-bound, width auto — preserves the logo's native 256:96 ratio.
+     * Uses the padding-trimmed logo-nav.png so the artwork reads large at nav height.
      * Never set both dimensions; the logo must not be squeezed or deformed. */
-    height: 48px;
+    height: 52px;
     width: auto;
     display: block;
     flex-shrink: 0;
