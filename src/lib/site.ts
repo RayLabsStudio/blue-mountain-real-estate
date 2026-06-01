@@ -8,6 +8,7 @@ export const SITE = {
   brokerage: {
     membership: 'Florida Realtors® & NAR',
     description: 'Licensed Florida real estate brokerage',
+    license: 'CQ1069676',
   },
   address: {
     region: 'Florida',

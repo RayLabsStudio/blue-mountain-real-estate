@@ -12,16 +12,14 @@ const NAV = [
 <header class="site-header">
   <div class="container brand-rail__inner">
     <a class="brand" href="/" aria-label={`${SITE.name} — home`}>
-      <span class="brand__mark" aria-hidden="true">
-        <svg viewBox="0 0 32 32" width="32" height="32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M3 25 L11 14 L16 19 L21 11 L29 25 Z" />
-          <circle cx="22" cy="7" r="2.5" fill="currentColor" stroke="none" />
-        </svg>
-      </span>
-      <span class="brand__text">
-        <span class="brand__name">Blue Mountain</span>
-        <span class="brand__sub">Real Estate</span>
-      </span>
+      <img
+        class="brand__logo"
+        src="/logo.png"
+        alt={SITE.name}
+        width="320"
+        height="213"
+        decoding="async"
+      />
     </a>
 
     <nav class="primary-nav" aria-label="Primary">
@@ -97,37 +95,13 @@ const NAV = [
     min-width: 0;
   }
 
-  .brand__mark {
-    width: 36px;
-    height: 36px;
+  .brand__logo {
+    /* Height-bound, width auto — preserves the logo's native 320:213 ratio.
+     * Never set both dimensions; the logo must not be squeezed or deformed. */
+    height: 48px;
+    width: auto;
+    display: block;
     flex-shrink: 0;
-    display: grid;
-    place-items: center;
-    color: var(--color-accent);
-  }
-
-  .brand__text {
-    display: flex;
-    flex-direction: column;
-    line-height: 1.1;
-    min-width: 0;
-  }
-
-  .brand__name {
-    font-family: var(--font-display);
-    font-weight: 700;
-    font-size: 1.0625rem;
-    color: var(--color-ink);
-    letter-spacing: -0.01em;
-  }
-
-  .brand__sub {
-    font-family: var(--font-outlier);
-    font-size: 0.6875rem;
-    color: var(--color-ink-3);
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    margin-top: 2px;
   }
 
   .primary-nav__toggle {
@@ -245,6 +219,6 @@ const NAV = [
       padding: 0.5rem 1rem;
       font-size: 0.75rem;
     }
-    .brand__name { font-size: 1rem; }
+    .brand__logo { height: 40px; }
   }
 </style>
