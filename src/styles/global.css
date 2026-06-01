@@ -317,7 +317,7 @@ main > .hr {
 
 .step-head__num {
   font-family: var(--font-display);
-  font-style: italic;
+  font-style: normal;
   font-weight: 700;
   font-size: var(--text-2xl);
   color: var(--color-accent);
@@ -355,7 +355,7 @@ main > .hr {
 .disclaimer {
   font-size: var(--text-sm);
   color: var(--color-ink-3);
-  font-style: italic;
+  font-style: normal;
   max-width: var(--measure-prose);
   line-height: 1.55;
 }
