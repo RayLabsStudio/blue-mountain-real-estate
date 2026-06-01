@@ -27,6 +27,13 @@
   --color-accent:       oklch(45.0% 0.150 255);  /* trust blue (vivid coastal) */
   --color-accent-2:     oklch(36.0% 0.140 255);  /* deeper for hover */
   --color-accent-ink:   oklch(100% 0 0);
+
+  /* Tropical sunset accent — used selectively on service icons, prep checkmarks,
+   * and dark-band eyebrows to bring the coastal-Florida warmth in without
+   * displacing the trust-blue primary. */
+  --color-accent-warm:    oklch(72.0% 0.160 45);   /* warm sunset coral */
+  --color-accent-warm-2:  oklch(62.0% 0.155 40);   /* deeper coral for hover */
+  --color-accent-warm-ink: oklch(20.0% 0.060 35);  /* dark text on coral */
   --color-rule:         oklch(80.0% 0.018 65);   /* warm hairline */
   --color-rule-2:       oklch(86.0% 0.014 65);   /* lighter warm hairline */
   --color-focus:        oklch(45.0% 0.150 255);
@@ -83,6 +90,15 @@
   --radius-pill:  999px;
   --radius-card:  4px;
   --radius-input: 4px;
+  --radius-img:   14px;   /* large coastal imagery — soft corners */
+  --radius-card-lg: 16px; /* image-led service cards */
+
+  /* ------- Coastal imagery: navy scrims for full-bleed photo overlays ------- */
+  --scrim-1: oklch(15% 0.055 255 / 0.86);  /* strongest — text anchor */
+  --scrim-2: oklch(18% 0.062 255 / 0.46);  /* mid fade */
+  --scrim-3: oklch(22% 0.068 255 / 0.10);  /* faintest — keeps photo open */
+  --shadow-img:  0 30px 60px -28px oklch(28% 0.080 255 / 0.40);
+  --shadow-card: 0 18px 40px -28px oklch(28% 0.080 255 / 0.32);
 
   /* ------- Layout ------- */
   --measure-prose: 68ch;

@@ -14,6 +14,9 @@
   --color-accent: var(--color-accent);
   --color-accent-2: var(--color-accent-2);
   --color-accent-ink: var(--color-accent-ink);
+  --color-accent-warm: var(--color-accent-warm);
+  --color-accent-warm-2: var(--color-accent-warm-2);
+  --color-accent-warm-ink: var(--color-accent-warm-ink);
   --color-rule: var(--color-rule);
   --color-rule-2: var(--color-rule-2);
   --color-focus: var(--color-focus);
@@ -289,8 +292,9 @@ main > .hr {
   display: block;
 }
 
+/* Coral reads on navy; the trust-blue accent does not (blue-on-blue). */
 .section--deep .eyebrow {
-  color: var(--color-accent);
+  color: var(--color-accent-warm);
   opacity: 1;
 }
 

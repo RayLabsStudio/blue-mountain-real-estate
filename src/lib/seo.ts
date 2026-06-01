@@ -21,11 +21,14 @@ export function organizationLd() {
     name: SITE.name,
     url: SITE.url,
     logo: `${SITE.url}/logo.png`,
-    telephone: SITE.phoneTel,
     email: SITE.email,
     areaServed: { '@type': 'State', name: 'Florida' },
     description: SITE.strapline,
     sameAs: [SITE.social.linkedin],
+    memberOf: [
+      { '@type': 'Organization', name: 'Florida Realtors' },
+      { '@type': 'Organization', name: 'National Association of Realtors' },
+    ],
   };
 }
 
@@ -35,7 +38,6 @@ export function localBusinessLd() {
     '@type': 'LocalBusiness',
     name: SITE.name,
     url: SITE.url,
-    telephone: SITE.phoneTel,
     email: SITE.email,
     address: {
       '@type': 'PostalAddress',

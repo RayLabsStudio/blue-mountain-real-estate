@@ -12,18 +12,27 @@ const services = [
     title: 'Buy a Home',
     body: 'Single-family, condo, or investment — we represent buyers across Florida with market research, financing referrals, negotiation, and closing coordination.',
     cta: 'Start a search',
+    image:
+      'https://images.unsplash.com/photo-1564013799919-ab600027ffc6?auto=format&fit=crop&w=1200&q=80',
+    alt: 'White two-story coastal Florida home with wrap-around porch, palms, and pool.',
   },
   {
     icon: 'sign',
     title: 'Sell a Home',
     body: 'Pricing, staging guidance, professional photography, MLS listing, and active negotiation. We market your property to qualified buyers, not just any walk-in.',
     cta: 'Get a market analysis',
+    image:
+      'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1200&q=80',
+    alt: 'Single-family home with manicured lawn, ready to list.',
   },
   {
     icon: 'building',
     title: 'Rental & Property Management',
     body: 'Tenant screening, leasing, rent collection, maintenance coordination, and monthly owner reporting. Hands-off ownership for landlords and out-of-state investors.',
     cta: 'Discuss management',
+    image:
+      'https://images.unsplash.com/photo-1560185007-cde436f6a4d0?auto=format&fit=crop&w=1200&q=80',
+    alt: 'Bright, professionally staged interior of a managed rental property.',
   },
 ] as const;
 
@@ -60,12 +69,13 @@ const servicesLd = services.map((s) =>
   description={description}
   jsonLd={[organizationLd(), localBusinessLd(), ...servicesLd]}
 >
-  <!-- 1 · HERO (deep navy) -->
+  <!-- 1 · HERO — Marquee, full-bleed coastal photo -->
   <section class="hero section--deep">
+    <div class="hero__photo" aria-hidden="true"></div>
     <div class="container hero__inner">
-      <span class="eyebrow">{SITE.tagline}</span>
-      <h1 class="display-l hero__title">
-        Florida real estate, <em>done right.</em>
+      <span class="eyebrow hero__eyebrow">{SITE.tagline}</span>
+      <h1 class="display-xl hero__title">
+        Florida coast living, <em>handled with care.</em>
       </h1>
       <p class="hero__lede">
         Licensed brokerage and property management for Florida buyers, sellers, and landlords.
@@ -76,9 +86,18 @@ const servicesLd = services.map((s) =>
         <a class="btn btn--secondary" href="#services">Explore Our Services</a>
       </div>
     </div>
+    <div class="hero__trust">
+      <div class="container hero__trust-inner">
+        <span class="hero__trust-item">Licensed Florida Brokerage</span>
+        <span class="hero__trust-dot" aria-hidden="true"></span>
+        <span class="hero__trust-item">Member · {SITE.brokerage.membership}</span>
+        <span class="hero__trust-dot" aria-hidden="true"></span>
+        <span class="hero__trust-item">Owner-Operated · 30+ Years</span>
+      </div>
+    </div>
   </section>
 
-  <!-- 2 · SERVICES (blue band) -->
+  <!-- 2 · SERVICES — large image-led cards -->
   <section id="services" class="section">
     <div class="container">
       <header class="section-head">
@@ -93,62 +112,48 @@ const servicesLd = services.map((s) =>
       <ul class="services-grid services-grid--3">
         {services.map((s) => (
           <li class="service-card">
-            <span class="service-card__icon" aria-hidden="true">
-              {s.icon === 'key' && (
-                <svg viewBox="0 0 32 32" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-                  <circle cx="10" cy="22" r="5" />
-                  <path d="M14 18 L26 6" />
-                  <path d="M22 10 L26 6 L28 8" />
-                  <path d="M18 14 L21 11" />
-                </svg>
-              )}
-              {s.icon === 'sign' && (
-                <svg viewBox="0 0 32 32" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-                  <line x1="10" y1="6" x2="10" y2="28" />
-                  <rect x="10" y="8" width="16" height="10" />
-                  <path d="M4 28 L28 28" />
-                </svg>
-              )}
-              {s.icon === 'building' && (
-                <svg viewBox="0 0 32 32" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-                  <rect x="6" y="4" width="20" height="24" />
-                  <line x1="11" y1="10" x2="13" y2="10" />
-                  <line x1="19" y1="10" x2="21" y2="10" />
-                  <line x1="11" y1="16" x2="13" y2="16" />
-                  <line x1="19" y1="16" x2="21" y2="16" />
-                  <line x1="14" y1="28" x2="14" y2="22" />
-                  <line x1="18" y1="28" x2="18" y2="22" />
-                </svg>
-              )}
-            </span>
-            <h3 class="service-card__title">{s.title}</h3>
-            <p class="service-card__body">{s.body}</p>
-            <a class="service-card__link" href="#contact">{s.cta} →</a>
-          </li>
-        ))}
-      </ul>
-    </div>
-  </section>
-
-  <!-- 3 · WHY US (cream) -->
-  <section id="why-us" class="section">
-    <div class="container">
-      <header class="section-head">
-        <span class="eyebrow">Why Blue Mountain</span>
-        <h2 class="display-m section-head__title">What working with us actually looks like.</h2>
-      </header>
-
-      <ul class="reasons-grid">
-        {reasons.map((r) => (
-          <li class="reason">
-            <span class="reason__check" aria-hidden="true">
-              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M5 12 L10 17 L19 7" />
-              </svg>
-            </span>
-            <div>
-              <h3 class="reason__title">{r.title}</h3>
-              <p class="reason__body">{r.body}</p>
+            <div class="service-card__media">
+              <img
+                src={s.image}
+                alt={s.alt}
+                width="1200"
+                height="750"
+                loading="lazy"
+                decoding="async"
+              />
+              <span class="service-card__icon" aria-hidden="true">
+                {s.icon === 'key' && (
+                  <svg viewBox="0 0 32 32" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="10" cy="22" r="5" />
+                    <path d="M14 18 L26 6" />
+                    <path d="M22 10 L26 6 L28 8" />
+                    <path d="M18 14 L21 11" />
+                  </svg>
+                )}
+                {s.icon === 'sign' && (
+                  <svg viewBox="0 0 32 32" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="10" y1="6" x2="10" y2="28" />
+                    <rect x="10" y="8" width="16" height="10" />
+                    <path d="M4 28 L28 28" />
+                  </svg>
+                )}
+                {s.icon === 'building' && (
+                  <svg viewBox="0 0 32 32" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="6" y="4" width="20" height="24" />
+                    <line x1="11" y1="10" x2="13" y2="10" />
+                    <line x1="19" y1="10" x2="21" y2="10" />
+                    <line x1="11" y1="16" x2="13" y2="16" />
+                    <line x1="19" y1="16" x2="21" y2="16" />
+                    <line x1="14" y1="28" x2="14" y2="22" />
+                    <line x1="18" y1="28" x2="18" y2="22" />
+                  </svg>
+                )}
+              </span>
+            </div>
+            <div class="service-card__body-wrap">
+              <h3 class="service-card__title">{s.title}</h3>
+              <p class="service-card__body">{s.body}</p>
+              <a class="service-card__link" href="#contact">{s.cta} →</a>
             </div>
           </li>
         ))}
@@ -156,99 +161,137 @@ const servicesLd = services.map((s) =>
     </div>
   </section>
 
-  <!-- 4 · ABOUT (blue band) -->
-  <section id="about" class="section">
-    <div class="container container--doc">
-      <header class="section-head">
-        <span class="eyebrow">About us</span>
-        <h2 class="display-m section-head__title">Florida-based. Florida-focused.</h2>
-      </header>
+  <!-- 3 · WHY US — split: large coastal image + reasons -->
+  <section id="why-us" class="section">
+    <div class="container why-us__layout">
+      <figure class="why-us__media">
+        <img
+          src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1400&q=80"
+          alt="Light-filled open-plan living room of a Florida coastal home."
+          width="1400"
+          height="1750"
+          loading="lazy"
+          decoding="async"
+        />
+      </figure>
 
+      <div class="why-us__content">
+        <header class="section-head">
+          <span class="eyebrow">Why Blue Mountain</span>
+          <h2 class="display-m section-head__title">What working with us actually looks like.</h2>
+        </header>
+
+        <ul class="reasons-grid">
+          {reasons.map((r) => (
+            <li class="reason">
+              <span class="reason__check" aria-hidden="true">
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M5 12 L10 17 L19 7" />
+                </svg>
+              </span>
+              <div>
+                <h3 class="reason__title">{r.title}</h3>
+                <p class="reason__body">{r.body}</p>
+              </div>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3.5 · COASTAL STATEMENT BAND — full-bleed sunset -->
+  <section class="statement-band section--deep">
+    <div
+      class="statement-band__photo"
+      style="background-image: url('https://images.unsplash.com/photo-1605723517503-3cadb5818a0c?auto=format&fit=crop&w=2400&q=85')"
+    ></div>
+    <div class="container statement-band__inner">
+      <span class="eyebrow">Florida coast · sunrise to sunset</span>
+      <p class="statement-band__quote">
+        We work the deals we take all the way through — not the volume, the outcome.
+      </p>
+    </div>
+  </section>
+
+  <!-- 4 · ABOUT — large framed photo + prose -->
+  <section id="about" class="section">
+    <div class="container about__layout">
       <figure class="about-photo">
         <img
-          src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=1600&q=80"
+          src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&w=1600&q=80"
           alt="The Blue Mountain Real Estate team — Florida-licensed agents."
           width="1600"
-          height="900"
+          height="1100"
           loading="lazy"
           decoding="async"
         />
         <figcaption>Our Florida agents — licensed, local, and accountable.</figcaption>
       </figure>
 
-      <div class="prose">
-        <p>
-          Blue Mountain Real Estate is a Florida-licensed residential brokerage and property
-          management firm, founded by AJ Bedizel — a four-state licensed broker and Florida
-          certified general contractor with over 30 years across real estate investments,
-          construction, and property operations.
-        </p>
-        <p>
-          We're part of a small family of sister companies: <a href={SITE.sister.seniorIncomeProperties}>
-          Senior Income Properties</a> handles attorney-directed real estate for elder-law and
-          Medicaid-focused planning, and <a href={SITE.sister.floridaTraditionBuilders}>
-          Florida Tradition Builders</a> handles custom coastal construction. When your transaction
-          touches multiple disciplines, we coordinate them in-house.
-        </p>
-        <p>
-          We work with families, individual investors, and out-of-state owners who want a
-          hands-off relationship with a Florida property. We don't churn listings, we don't
-          chase volume — we work the deals we take all the way through.
-        </p>
+      <div class="about__body">
+        <header class="section-head">
+          <span class="eyebrow">About us</span>
+          <h2 class="display-m section-head__title">Florida-based. Florida-focused.</h2>
+        </header>
+
+        <div class="prose">
+          <p>
+            Blue Mountain Real Estate is a Florida-licensed residential brokerage and property
+            management firm, founded by AJ Bedizel — a four-state licensed broker and Florida
+            certified general contractor with over 30 years across real estate investments,
+            construction, and property operations.
+          </p>
+          <p>
+            We're part of a small family of sister companies: <a href={SITE.sister.seniorIncomeProperties}>
+            Senior Income Properties</a> handles attorney-directed real estate for elder-law and
+            Medicaid-focused planning, and <a href={SITE.sister.floridaTraditionBuilders}>
+            Florida Tradition Builders</a> handles custom coastal construction. When your transaction
+            touches multiple disciplines, we coordinate them in-house.
+          </p>
+          <p>
+            We work with families, individual investors, and out-of-state owners who want a
+            hands-off relationship with a Florida property. We don't churn listings, we don't
+            chase volume — we work the deals we take all the way through.
+          </p>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- 5 · CONTACT (cream) -->
+  <!-- 5 · CONTACT (email-based) -->
   <section id="contact" class="section">
     <div class="container">
       <header class="section-head section-head--center">
         <span class="eyebrow">Get in touch</span>
         <h2 class="display-m section-head__title">Connect with our Florida experts.</h2>
         <p class="section-head__lede">
-          Pick up the phone or send a short email — we'll get back the same business day to talk
-          through your property goals. No obligation, no high-pressure pitch.
+          Send a short email and we'll get back the same business day to talk through your property
+          goals. No obligation, no high-pressure pitch.
         </p>
       </header>
 
       <div class="contact-grid">
         <article class="channel channel--primary">
-          <span class="eyebrow">Direct line</span>
-          <h3 class="channel__title">Give us a call.</h3>
+          <span class="eyebrow">Florida Licensed</span>
+          <h3 class="channel__title">Licensed & represented.</h3>
           <p class="channel__lede">
-            The fastest way to reach us. Talk to a licensed agent on the first ring during business
-            hours, or leave a message and we'll call back the same business day.
+            Licensed Florida real estate brokerage with full E&O coverage and fiduciary
+            representation on every transaction. Member of the state and national associations.
           </p>
           <div class="channel__value-row">
-            <a class="channel__value channel__value--phone" href={`tel:${SITE.phoneTel}`}>
-              <span>{SITE.phone}</span>
-            </a>
-            <button
-              type="button"
-              class="channel__copy"
-              data-copy={SITE.phone}
-              aria-label={`Copy phone number ${SITE.phone}`}
-              title="Copy to clipboard"
-            >
-              <svg class="channel__copy-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
-                <rect x="9" y="9" width="13" height="13" rx="2" ry="2" />
-                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
-              </svg>
-              <svg class="channel__copy-check" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                <path d="M5 13 L9 17 L19 7" stroke-linecap="round" stroke-linejoin="round" />
-              </svg>
-              <span class="vh">Copy phone number</span>
-              <span class="channel__copy-toast" aria-hidden="true">Copied</span>
-            </button>
+            <div class="channel__value channel__value--phone" aria-label={`Member ${SITE.brokerage.membership}`}>
+              <span>{SITE.brokerage.membership}</span>
+            </div>
           </div>
           <dl class="channel__meta">
             <div>
-              <dt>Hours</dt>
-              <dd>Monday — Friday · 9am – 5pm ET</dd>
+              <dt>Brokerage</dt>
+              <dd>{SITE.brokerage.description}</dd>
             </div>
             <div>
-              <dt>Voicemail</dt>
-              <dd>24/7 · returned same business day</dd>
+              <dt>Coverage</dt>
+              <dd>E&O insurance on every transaction</dd>
             </div>
           </dl>
         </article>
@@ -353,44 +396,75 @@ const servicesLd = services.map((s) =>
 </script>
 
 <style>
-  /* ── Hero ─────────────────────────────────────────── */
+  /* Hallmark · macrostructure: Marquee Hero · genre: atmospheric (coastal-luxury)
+   * tone: luxury · theme: custom (warm cream + coastal navy, sunset-coral accent)
+   * anchor hue: navy 255° · accent-warm: sunset-coral 45°
+   * pre-emit critique: P5 H5 E5 S4 R4 V5
+   */
+
+  /* ── Hero — Marquee, full-bleed coastal photo ─────── */
   .hero {
-    padding-block: var(--space-3xl) var(--space-2xl);
+    position: relative;
+    isolation: isolate;
+    min-height: clamp(560px, 84vh, 780px);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding-block: var(--space-4xl) 0;
+    overflow: hidden;
+    background: var(--color-paper-deep);
+  }
+
+  .hero__photo {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
     background:
-      linear-gradient(110deg, oklch(22% 0.075 255 / 0.88) 0%, oklch(26% 0.080 255 / 0.78) 55%, oklch(28% 0.080 255 / 0.55) 100%),
-      url('https://images.unsplash.com/photo-1564013799919-ab600027ffc6?auto=format&fit=crop&w=2000&q=80') center/cover no-repeat,
+      linear-gradient(
+        86deg,
+        var(--scrim-1) 0%,
+        var(--scrim-2) 46%,
+        var(--scrim-3) 100%
+      ),
+      linear-gradient(0deg, var(--scrim-1) 0%, transparent 42%),
+      url('https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&fit=crop&w=2400&q=85')
+        center/cover no-repeat,
       var(--color-paper-deep);
   }
 
   .hero__inner {
-    max-width: 64rem;
+    max-width: 60rem;
+    padding-bottom: var(--space-2xl);
   }
 
-  .hero .eyebrow {
-    color: oklch(80% 0.085 250);
+  .hero__eyebrow {
+    color: var(--color-accent-warm);
+    letter-spacing: 0.24em;
   }
 
   .hero__title {
     color: var(--color-ink-on-deep);
     margin-top: var(--space-xs);
-    line-height: 1.08;
-    letter-spacing: -0.015em;
-    max-width: 22ch;
+    line-height: 1.04;
+    letter-spacing: -0.02em;
+    max-width: 18ch;
+    font-style: normal;
   }
 
   .hero__title em {
-    color: oklch(80% 0.090 250);
+    color: var(--color-accent-warm);
     font-style: italic;
     font-weight: 700;
   }
 
   .hero__lede {
     color: var(--color-ink-on-deep);
-    opacity: 0.82;
+    opacity: 0.92;
     margin-top: var(--space-md);
     font-size: var(--text-md);
     line-height: 1.65;
-    max-width: 56ch;
+    max-width: 50ch;
+    text-shadow: 0 1px 16px oklch(15% 0.05 255 / 0.45);
   }
 
   .hero__cta {
@@ -398,6 +472,39 @@ const servicesLd = services.map((s) =>
     display: flex;
     gap: var(--space-sm);
     flex-wrap: wrap;
+  }
+
+  /* Hero trust strip — pinned bottom of the marquee */
+  .hero__trust {
+    border-top: var(--rule-hair) solid oklch(100% 0 0 / 0.16);
+    background: oklch(15% 0.05 255 / 0.42);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+  }
+
+  .hero__trust-inner {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: var(--space-sm) var(--space-md);
+    padding-block: var(--space-sm);
+    font-family: var(--font-outlier);
+    font-size: var(--text-xs);
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    color: var(--color-ink-on-deep);
+  }
+
+  .hero__trust-item {
+    opacity: 0.86;
+  }
+
+  .hero__trust-dot {
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: var(--color-accent-warm);
+    flex-shrink: 0;
   }
 
   /* ── Section head ────────────────────────────────── */
@@ -424,7 +531,7 @@ const servicesLd = services.map((s) =>
     font-size: var(--text-md);
   }
 
-  /* ── Services grid ───────────────────────────────── */
+  /* ── Services — image-led cards ──────────────────── */
   .services-grid {
     list-style: none;
     margin: 0;
@@ -440,22 +547,57 @@ const servicesLd = services.map((s) =>
   .service-card {
     background: var(--color-paper-2);
     border: var(--rule-hair) solid var(--color-rule-2);
+    border-radius: var(--radius-card-lg);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    box-shadow: var(--shadow-card);
+    transition: transform var(--dur-med) var(--ease-out), box-shadow var(--dur-med) var(--ease-out);
+  }
+
+  .service-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-img);
+  }
+
+  .service-card__media {
+    position: relative;
+    aspect-ratio: 16 / 10;
+    overflow: hidden;
+    background: var(--color-paper-3);
+  }
+
+  .service-card__media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform var(--dur-long) var(--ease-out);
+  }
+
+  .service-card:hover .service-card__media img {
+    transform: scale(1.04);
+  }
+
+  .service-card__icon {
+    position: absolute;
+    left: var(--space-md);
+    bottom: var(--space-md);
+    width: 44px;
+    height: 44px;
+    color: var(--color-accent-warm-ink);
+    background: var(--color-accent-warm);
+    display: grid;
+    place-items: center;
     border-radius: var(--radius-card);
+    box-shadow: 0 6px 16px -6px oklch(20% 0.06 255 / 0.5);
+  }
+
+  .service-card__body-wrap {
     padding: var(--space-lg);
     display: flex;
     flex-direction: column;
     gap: var(--space-xs);
-  }
-
-  .service-card__icon {
-    width: 44px;
-    height: 44px;
-    color: var(--color-accent);
-    display: grid;
-    place-items: center;
-    border: var(--rule-hair) solid var(--color-accent);
-    border-radius: var(--radius-card);
-    margin-bottom: var(--space-2xs);
+    flex: 1;
   }
 
   .service-card__title {
@@ -485,14 +627,37 @@ const servicesLd = services.map((s) =>
     color: var(--color-accent-2);
   }
 
-  /* ── Reasons grid ────────────────────────────────── */
+  /* ── Why us — split image + reasons ──────────────── */
+  .why-us__layout {
+    display: grid;
+    grid-template-columns: minmax(0, 0.82fr) minmax(0, 1.18fr);
+    gap: var(--space-2xl);
+    align-items: center;
+  }
+
+  .why-us__media {
+    margin: 0;
+    border-radius: var(--radius-img);
+    overflow: hidden;
+    box-shadow: var(--shadow-img);
+    align-self: stretch;
+  }
+
+  .why-us__media img {
+    width: 100%;
+    height: 100%;
+    min-height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
   .reasons-grid {
     list-style: none;
     margin: 0;
     padding: 0;
     display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: var(--space-lg) var(--space-2xl);
+    grid-template-columns: 1fr;
+    gap: var(--space-lg);
   }
 
   .reason {
@@ -503,12 +668,12 @@ const servicesLd = services.map((s) =>
   }
 
   .reason__check {
-    width: 32px;
-    height: 32px;
+    width: 30px;
+    height: 30px;
     display: grid;
     place-items: center;
-    background: var(--color-accent);
-    color: var(--color-accent-ink);
+    background: var(--color-accent-warm);
+    color: var(--color-accent-warm-ink);
     border-radius: 50%;
     flex-shrink: 0;
   }
@@ -527,7 +692,98 @@ const servicesLd = services.map((s) =>
     line-height: 1.6;
   }
 
-  /* ── About prose ─────────────────────────────────── */
+  /* ── Coastal statement band — full-bleed sunset ──── */
+  .statement-band {
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+    padding-block: var(--space-4xl);
+    display: flex;
+    align-items: center;
+    min-height: clamp(340px, 48vw, 520px);
+  }
+
+  .statement-band__photo {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background-size: cover;
+    background-position: center 58%;
+    background-repeat: no-repeat;
+  }
+
+  .statement-band__photo::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(180deg, var(--scrim-2) 0%, transparent 32%, var(--scrim-1) 100%);
+  }
+
+  .statement-band__inner {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    max-width: 40rem;
+  }
+
+  .statement-band__inner .eyebrow {
+    color: var(--color-accent-warm);
+    letter-spacing: 0.22em;
+    margin-inline: auto;
+  }
+
+  .statement-band__quote {
+    margin: var(--space-sm) auto 0;
+    font-family: var(--font-display);
+    font-style: italic;
+    font-weight: 700;
+    font-size: var(--text-display-s);
+    line-height: 1.16;
+    letter-spacing: -0.015em;
+    color: var(--color-ink-on-deep);
+    text-wrap: balance;
+    text-shadow: 0 2px 20px oklch(15% 0.05 255 / 0.5);
+    max-width: 22ch;
+  }
+
+  /* ── About — split framed photo + prose ──────────── */
+  .about__layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: var(--space-2xl);
+    align-items: start;
+  }
+
+  .about-photo {
+    margin: 0;
+    position: sticky;
+    top: var(--space-2xl);
+  }
+
+  .about-photo img {
+    width: 100%;
+    height: auto;
+    border-radius: var(--radius-img);
+    box-shadow: var(--shadow-img);
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    display: block;
+  }
+
+  .about-photo figcaption {
+    margin-top: var(--space-sm);
+    font-family: var(--font-outlier);
+    font-size: var(--text-xs);
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--color-ink-3);
+  }
+
+  .about__body .prose {
+    margin-top: var(--space-md);
+  }
+
   .prose a {
     color: var(--color-accent);
     border-bottom: 1px solid currentColor;
@@ -535,31 +791,6 @@ const servicesLd = services.map((s) =>
 
   .prose a:hover {
     color: var(--color-accent-2);
-  }
-
-  .about-photo {
-    margin: 0 0 var(--space-xl);
-  }
-
-  .about-photo img {
-    width: 100%;
-    height: auto;
-    border-radius: var(--radius-card);
-    border: var(--rule-hair) solid var(--color-rule-2);
-    background: var(--color-paper-3);
-    aspect-ratio: 16 / 9;
-    object-fit: cover;
-    display: block;
-  }
-
-  .about-photo figcaption {
-    margin-top: var(--space-xs);
-    font-family: var(--font-outlier);
-    font-size: var(--text-xs);
-    text-transform: uppercase;
-    letter-spacing: 0.14em;
-    color: var(--color-ink-3);
-    text-align: center;
   }
 
   /* ── Contact: channel cards ──────────────────────── */
@@ -573,11 +804,12 @@ const servicesLd = services.map((s) =>
   .channel {
     background: var(--color-paper-2);
     border: var(--rule-hair) solid var(--color-rule);
-    border-radius: var(--radius-card);
+    border-radius: var(--radius-card-lg);
     padding: var(--space-xl);
     display: flex;
     flex-direction: column;
     gap: var(--space-sm);
+    box-shadow: var(--shadow-card);
   }
 
   .channel--primary {
@@ -587,7 +819,7 @@ const servicesLd = services.map((s) =>
   }
 
   .channel--primary .eyebrow {
-    color: oklch(80% 0.085 250);
+    color: var(--color-accent-warm);
   }
 
   .channel--primary .channel__title {
@@ -669,8 +901,8 @@ const servicesLd = services.map((s) =>
 
   .channel--primary .channel__value:hover {
     background: oklch(100% 0 0 / 0.12);
-    border-color: oklch(80% 0.085 250);
-    color: oklch(80% 0.085 250);
+    border-color: var(--color-accent-warm);
+    color: var(--color-accent-warm);
   }
 
   .channel__copy {
@@ -706,8 +938,8 @@ const servicesLd = services.map((s) =>
   .channel--primary .channel__copy:hover,
   .channel--primary .channel__copy:focus-visible {
     background: oklch(100% 0 0 / 0.12);
-    border-color: oklch(80% 0.085 250);
-    color: oklch(80% 0.085 250);
+    border-color: var(--color-accent-warm);
+    color: var(--color-accent-warm);
   }
 
   .channel__copy-check { display: none; }
@@ -814,9 +1046,9 @@ const servicesLd = services.map((s) =>
     width: 22px;
     height: 22px;
     border-radius: 4px;
-    background: var(--color-accent);
-    border: 1.5px solid var(--color-accent);
-    color: var(--color-accent-ink);
+    background: var(--color-accent-warm);
+    border: 1.5px solid var(--color-accent-warm);
+    color: var(--color-accent-warm-ink);
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -828,9 +1060,25 @@ const servicesLd = services.map((s) =>
   @media (max-width: 960px) {
     .services-grid--3 {
       grid-template-columns: 1fr;
+      max-width: 30rem;
+      margin-inline: auto;
+    }
+    .why-us__layout {
+      grid-template-columns: 1fr;
+      gap: var(--space-xl);
+    }
+    .why-us__media {
+      max-height: 420px;
     }
     .reasons-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+    .about__layout {
       grid-template-columns: 1fr;
+      gap: var(--space-xl);
+    }
+    .about-photo {
+      position: static;
     }
   }
 
@@ -840,7 +1088,17 @@ const servicesLd = services.map((s) =>
     }
   }
 
-  @media (max-width: 600px) {
+  @media (max-width: 640px) {
+    .hero {
+      min-height: clamp(520px, 90vh, 680px);
+      padding-top: var(--space-3xl);
+    }
+    .hero__inner {
+      padding-bottom: var(--space-xl);
+    }
+    .reasons-grid {
+      grid-template-columns: 1fr;
+    }
     .channel {
       padding: var(--space-md);
     }
@@ -848,8 +1106,8 @@ const servicesLd = services.map((s) =>
     .prep__list {
       grid-template-columns: 1fr;
     }
-    .hero {
-      padding-block: var(--space-2xl) var(--space-xl);
+    .statement-band {
+      padding-block: var(--space-3xl);
     }
   }
 </style>

@@ -4,9 +4,11 @@ export const SITE = {
   strapline:
     'Florida residential brokerage and property management — buy, sell, or rent with a team that handles the whole transaction, end to end.',
   url: 'https://bluemountainreal.com',
-  phone: '352-356-8130',
-  phoneTel: '+13523568130',
   email: 'bluemtnreal@gmail.com',
+  brokerage: {
+    membership: 'Florida Realtors® & NAR',
+    description: 'Licensed Florida real estate brokerage',
+  },
   address: {
     region: 'Florida',
     country: 'US',
