@@ -29,6 +29,11 @@ export function organizationLd() {
       { '@type': 'Organization', name: 'Florida Realtors' },
       { '@type': 'Organization', name: 'National Association of Realtors' },
     ],
+    hasCredential: {
+      '@type': 'EducationalOccupationalCredential',
+      credentialCategory: 'Florida Real Estate Brokerage License',
+      identifier: SITE.brokerage.license,
+    },
   };
 }
 
@@ -46,6 +51,11 @@ export function localBusinessLd() {
     },
     areaServed: { '@type': 'State', name: 'Florida' },
     priceRange: 'Contact for pricing',
+    hasCredential: {
+      '@type': 'EducationalOccupationalCredential',
+      credentialCategory: 'Florida Real Estate Brokerage License',
+      identifier: SITE.brokerage.license,
+    },
   };
 }
 
