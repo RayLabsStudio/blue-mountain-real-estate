@@ -164,6 +164,18 @@ const servicesLd = services.map((s) =>
         <h2 class="display-m section-head__title">Florida-based. Florida-focused.</h2>
       </header>
 
+      <figure class="about-photo">
+        <img
+          src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=1600&q=80"
+          alt="The Blue Mountain Real Estate team — Florida-licensed agents."
+          width="1600"
+          height="900"
+          loading="lazy"
+          decoding="async"
+        />
+        <figcaption>Our Florida agents — licensed, local, and accountable.</figcaption>
+      </figure>
+
       <div class="prose">
         <p>
           Blue Mountain Real Estate is a Florida-licensed residential brokerage and property
@@ -345,7 +357,8 @@ const servicesLd = services.map((s) =>
   .hero {
     padding-block: var(--space-3xl) var(--space-2xl);
     background:
-      radial-gradient(ellipse at top right, oklch(34% 0.090 250 / 0.55), transparent 55%),
+      linear-gradient(110deg, oklch(22% 0.075 255 / 0.88) 0%, oklch(26% 0.080 255 / 0.78) 55%, oklch(28% 0.080 255 / 0.55) 100%),
+      url('https://images.unsplash.com/photo-1564013799919-ab600027ffc6?auto=format&fit=crop&w=2000&q=80') center/cover no-repeat,
       var(--color-paper-deep);
   }
 
@@ -522,6 +535,31 @@ const servicesLd = services.map((s) =>
 
   .prose a:hover {
     color: var(--color-accent-2);
+  }
+
+  .about-photo {
+    margin: 0 0 var(--space-xl);
+  }
+
+  .about-photo img {
+    width: 100%;
+    height: auto;
+    border-radius: var(--radius-card);
+    border: var(--rule-hair) solid var(--color-rule-2);
+    background: var(--color-paper-3);
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    display: block;
+  }
+
+  .about-photo figcaption {
+    margin-top: var(--space-xs);
+    font-family: var(--font-outlier);
+    font-size: var(--text-xs);
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--color-ink-3);
+    text-align: center;
   }
 
   /* ── Contact: channel cards ──────────────────────── */

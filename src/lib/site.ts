@@ -6,7 +6,7 @@ export const SITE = {
   url: 'https://bluemountainreal.com',
   phone: '352-356-8130',
   phoneTel: '+13523568130',
-  email: 'aj@seniorincomeproperties.com',
+  email: 'bluemtnreal@gmail.com',
   address: {
     region: 'Florida',
     country: 'US',
