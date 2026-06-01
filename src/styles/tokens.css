@@ -42,9 +42,10 @@
   --color-paper-deep:   oklch(28.0% 0.080 255);  /* deep navy field */
   --color-paper-deep-2: oklch(20.0% 0.070 255);
   --color-ink-on-deep:  oklch(96.0% 0.008 70);   /* warm-white text on deep */
+  --color-sand:         oklch(89.0% 0.045 78);   /* warm champagne — display emphasis on deep (replaces loud coral) */
 
   /* ------- Fonts ------- */
-  --font-display: "Playfair Display", "Source Serif Pro", Georgia, "Times New Roman", serif;
+  --font-display: "Fraunces", "Source Serif Pro", Georgia, "Times New Roman", serif;
   --font-body:    "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   --font-outlier: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
 
