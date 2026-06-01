@@ -1,0 +1,224 @@
+---
+import { SITE } from '~/lib/site';
+const year = new Date().getFullYear();
+---
+
+<footer class="site-footer section--deep">
+  <div class="container site-footer__inner">
+    <section class="site-footer__statement">
+      <div class="site-footer__statement-left">
+        <span class="eyebrow">Blue Mountain Real Estate</span>
+        <h2 class="site-footer__strapline display-m">
+          Florida real estate, <em>handled end to end.</em>
+        </h2>
+      </div>
+      <div class="site-footer__statement-right">
+        <p class="site-footer__lede">
+          Licensed Florida brokerage and property management — we represent buyers and sellers, manage
+          rentals, and handle the operational work so you don't have to.
+        </p>
+        <div class="site-footer__statement-cta">
+          <a class="btn btn--primary" href="#contact">Get a Free Consultation</a>
+          <a class="btn btn--secondary" href={`tel:${SITE.phoneTel}`}>{SITE.phone}</a>
+        </div>
+      </div>
+    </section>
+
+    <hr class="site-footer__rule" />
+
+    <div class="site-footer__cols">
+      <div class="site-footer__col">
+        <span class="eyebrow">Reach us</span>
+        <ul class="site-footer__list">
+          <li><a href={`tel:${SITE.phoneTel}`}>{SITE.phone}</a></li>
+          <li><a href={`mailto:${SITE.email}`}>{SITE.email}</a></li>
+          <li class="site-footer__note">Florida-based · serving Florida clients</li>
+          <li class="site-footer__note">Mon–Fri · 9am – 5pm ET</li>
+        </ul>
+      </div>
+
+      <div class="site-footer__col">
+        <span class="eyebrow">On this page</span>
+        <ul class="site-footer__list site-footer__list--cols">
+          <li><a href="#services">Services</a></li>
+          <li><a href="#why-us">Why Us</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+
+      <div class="site-footer__col">
+        <span class="eyebrow">Sister companies</span>
+        <ul class="site-footer__list">
+          <li><a href={SITE.sister.seniorIncomeProperties}>Senior Income Properties</a></li>
+          <li><a href={SITE.sister.floridaTraditionBuilders}>Florida Tradition Builders</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <hr class="site-footer__rule" />
+
+    <div class="site-footer__bottom">
+      <p class="disclaimer site-footer__disclaimer">{SITE.legalDisclaimer}</p>
+      <div class="site-footer__legal">
+        <p class="site-footer__copy">© {year} {SITE.name}</p>
+        <p class="site-footer__rights">All rights reserved.</p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    background: var(--color-paper-deep);
+    color: var(--color-ink-on-deep);
+    padding-block: var(--space-3xl) var(--space-xl);
+  }
+
+  .site-footer .eyebrow {
+    color: var(--color-accent);
+    opacity: 1;
+  }
+
+  .site-footer__statement {
+    display: grid;
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+    gap: var(--space-2xl);
+    align-items: end;
+  }
+
+  .site-footer__strapline {
+    color: var(--color-ink-on-deep);
+    margin-top: var(--space-xs);
+    line-height: 1.1;
+    max-width: 22ch;
+  }
+
+  .site-footer__strapline em {
+    color: var(--color-accent);
+    font-style: italic;
+    font-weight: 700;
+  }
+
+  .site-footer__lede {
+    color: var(--color-ink-on-deep);
+    opacity: 0.78;
+    line-height: 1.6;
+    max-width: 52ch;
+  }
+
+  .site-footer__statement-cta {
+    margin-top: var(--space-md);
+    display: flex;
+    gap: var(--space-sm);
+    flex-wrap: wrap;
+  }
+
+  .site-footer__rule {
+    border: 0;
+    border-top: var(--rule-hair) solid oklch(40% 0.030 265);
+    margin-block: var(--space-xl);
+  }
+
+  .site-footer__cols {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.6fr) minmax(0, 1fr);
+    gap: var(--space-xl);
+  }
+
+  .site-footer__list {
+    list-style: none;
+    margin: var(--space-xs) 0 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2xs);
+    font-size: var(--text-sm);
+  }
+
+  .site-footer__list--cols {
+    column-count: 2;
+    column-gap: var(--space-md);
+    display: block;
+  }
+
+  .site-footer__list--cols li {
+    break-inside: avoid;
+    padding-block: 4px;
+  }
+
+  .site-footer__list a {
+    color: var(--color-ink-on-deep);
+    opacity: 0.82;
+    transition: color var(--dur-med) var(--ease-out), opacity var(--dur-med) var(--ease-out);
+  }
+
+  .site-footer__list a:hover {
+    opacity: 1;
+    color: var(--color-accent);
+  }
+
+  .site-footer__note {
+    color: var(--color-ink-on-deep);
+    opacity: 0.6;
+    font-style: italic;
+  }
+
+  .site-footer__bottom {
+    display: grid;
+    grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+    gap: var(--space-xl);
+    align-items: end;
+  }
+
+  .site-footer__disclaimer {
+    color: var(--color-ink-on-deep);
+    opacity: 0.55;
+    font-style: italic;
+    font-size: var(--text-xs);
+    line-height: 1.6;
+    max-width: 78ch;
+  }
+
+  .site-footer__legal {
+    text-align: right;
+    font-family: var(--font-outlier);
+    font-size: 0.6875rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--color-ink-on-deep);
+    opacity: 0.5;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .site-footer__copy,
+  .site-footer__rights {
+    margin: 0;
+  }
+
+  @media (max-width: 960px) {
+    .site-footer__statement {
+      grid-template-columns: 1fr;
+      gap: var(--space-lg);
+      align-items: start;
+    }
+    .site-footer__cols {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .site-footer__cols {
+      grid-template-columns: 1fr;
+    }
+    .site-footer__bottom {
+      grid-template-columns: 1fr;
+      gap: var(--space-md);
+    }
+    .site-footer__legal {
+      text-align: left;
+    }
+  }
+</style>

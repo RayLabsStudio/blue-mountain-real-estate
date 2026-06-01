@@ -1,0 +1,389 @@
+@import "tailwindcss";
+@import "./tokens.css";
+
+@theme inline {
+  --color-paper: var(--color-paper);
+  --color-paper-2: var(--color-paper-2);
+  --color-paper-3: var(--color-paper-3);
+  --color-paper-white: var(--color-paper-white);
+  --color-band-blue: var(--color-band-blue);
+  --color-ink: var(--color-ink);
+  --color-ink-2: var(--color-ink-2);
+  --color-ink-3: var(--color-ink-3);
+  --color-ink-4: var(--color-ink-4);
+  --color-accent: var(--color-accent);
+  --color-accent-2: var(--color-accent-2);
+  --color-accent-ink: var(--color-accent-ink);
+  --color-rule: var(--color-rule);
+  --color-rule-2: var(--color-rule-2);
+  --color-focus: var(--color-focus);
+  --color-paper-deep: var(--color-paper-deep);
+  --color-paper-deep-2: var(--color-paper-deep-2);
+  --color-ink-on-deep: var(--color-ink-on-deep);
+
+  --font-display: var(--font-display);
+  --font-body: var(--font-body);
+  --font-outlier: var(--font-outlier);
+}
+
+/* ----- Reset + base ----- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+  overflow-x: clip;
+}
+
+html,
+body {
+  overflow-x: clip;
+}
+
+body {
+  margin: 0;
+  background: var(--color-paper);
+  color: var(--color-ink);
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  line-height: 1.12;
+  letter-spacing: -0.01em;
+  color: var(--color-ink);
+  margin: 0;
+  text-wrap: balance;
+  min-width: 0;
+}
+
+p {
+  text-wrap: pretty;
+}
+
+p {
+  margin: 0;
+  max-width: var(--measure-prose);
+  text-wrap: pretty;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  transition:
+    color var(--dur-med) var(--ease-out),
+    border-color var(--dur-med) var(--ease-out),
+    opacity var(--dur-med) var(--ease-out);
+}
+
+img,
+picture,
+svg,
+video {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+::selection {
+  background: var(--color-accent);
+  color: var(--color-accent-ink);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+}
+
+input,
+textarea,
+select {
+  font: inherit;
+  color: inherit;
+  background: var(--color-paper-white);
+  border: var(--rule-hair) solid var(--color-rule);
+  border-radius: var(--radius-input);
+  padding: var(--space-xs) var(--space-sm);
+  width: 100%;
+}
+
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  border-color: var(--color-accent);
+  outline-offset: 0;
+}
+
+/* ----- Layout primitives ----- */
+.container {
+  width: 100%;
+  max-width: var(--container);
+  margin-inline: auto;
+  padding-inline: var(--space-md);
+}
+
+.container--doc {
+  max-width: var(--container-doc);
+}
+
+.section {
+  padding-block: var(--space-2xl);
+}
+
+.section--tight {
+  padding-block: var(--space-xl);
+}
+
+.section--lg {
+  padding-block: var(--space-3xl);
+}
+
+.section--deep {
+  background: var(--color-paper-deep);
+  color: var(--color-ink-on-deep);
+}
+
+.section--deep h1,
+.section--deep h2,
+.section--deep h3,
+.section--deep h4 {
+  color: var(--color-ink-on-deep);
+}
+
+.section--paper-2 {
+  background: var(--color-paper-3);
+}
+
+/* ----- Banded sections: warm cream / soft gold alternation (site-wide) -----
+ * Top-level <section> children of <main> alternate warm cream (odd) and soft
+ * gold (even). The `>` combinator leaves nested <section>s untouched; deep
+ * bands (footers, closing CTAs, dark heroes) opt out via :not(.section--deep). */
+main > section:not(.section--deep):nth-of-type(odd) {
+  background: var(--color-paper);
+}
+
+main > section:not(.section--deep):nth-of-type(even) {
+  background: var(--color-band-blue);
+}
+
+/* Colour change between adjacent bands replaces the inter-section hairlines. */
+main > .hr {
+  display: none;
+}
+
+/* ----- Hairlines (Long Document rhythm) ----- */
+.hr {
+  border: 0;
+  border-top: var(--rule-hair) solid var(--color-rule);
+  margin-block: var(--space-xl);
+}
+
+.hr--bold {
+  border-top-width: var(--rule-bold);
+}
+
+/* ----- CTA buttons ----- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2xs);
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--radius-pill);
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 0.9375rem;
+  line-height: 1;
+  letter-spacing: 0;
+  border: var(--rule-mid) solid transparent;
+  text-align: center;
+  white-space: nowrap;
+  transition:
+    background-color var(--dur-med) var(--ease-out),
+    border-color var(--dur-med) var(--ease-out),
+    color var(--dur-med) var(--ease-out),
+    transform var(--dur-short) var(--ease-out);
+}
+
+.btn--primary {
+  background: var(--color-accent);
+  color: var(--color-accent-ink);
+  border-color: var(--color-accent);
+}
+
+.btn--primary:hover,
+.btn--primary:focus-visible {
+  background: var(--color-accent-2);
+  border-color: var(--color-accent-2);
+}
+
+.btn--primary:active {
+  transform: translateY(1px);
+}
+
+.btn--secondary {
+  background: transparent;
+  color: var(--color-ink);
+  border-color: var(--color-ink);
+}
+
+.btn--secondary:hover,
+.btn--secondary:focus-visible {
+  background: var(--color-ink);
+  color: var(--color-paper);
+}
+
+.section--deep .btn--secondary {
+  color: var(--color-ink-on-deep);
+  border-color: var(--color-ink-on-deep);
+}
+
+.section--deep .btn--secondary:hover,
+.section--deep .btn--secondary:focus-visible {
+  background: var(--color-ink-on-deep);
+  color: var(--color-ink);
+}
+
+.btn--ghost {
+  background: transparent;
+  color: var(--color-ink);
+  border-color: var(--color-rule);
+  padding: 0.625rem 1.125rem;
+  font-size: var(--text-sm);
+}
+
+.btn--ghost:hover {
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+}
+
+/* ----- Editorial label / eyebrow ----- */
+.eyebrow {
+  font-family: var(--font-outlier);
+  font-size: var(--text-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: var(--color-accent);
+  margin-bottom: var(--space-xs);
+  display: block;
+}
+
+.section--deep .eyebrow {
+  color: var(--color-accent);
+  opacity: 1;
+}
+
+/* ----- Display / heading sizes ----- */
+.display-xl { font-size: var(--text-display); line-height: 1.05; }
+.display-l  { font-size: var(--text-display-s); line-height: 1.08; }
+.display-m  { font-size: var(--text-4xl); line-height: 1.12; }
+.heading-l  { font-size: var(--text-3xl); }
+.heading-m  { font-size: var(--text-2xl); }
+.heading-s  { font-size: var(--text-xl); }
+
+/* ----- Long Document numbered head ----- */
+.step-head {
+  display: grid;
+  grid-template-columns: minmax(0, auto) 1fr;
+  align-items: baseline;
+  gap: var(--space-md);
+  margin-bottom: var(--space-md);
+}
+
+.step-head__num {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 700;
+  font-size: var(--text-2xl);
+  color: var(--color-accent);
+  letter-spacing: -0.02em;
+}
+
+.step-head__title {
+  font-size: var(--text-2xl);
+  letter-spacing: -0.01em;
+}
+
+/* ----- Prose ----- */
+.prose p + p { margin-top: var(--space-md); }
+.prose h2 { font-size: var(--text-3xl); margin-top: var(--space-2xl); margin-bottom: var(--space-md); }
+.prose h2:first-child { margin-top: 0; }
+.prose h3 { font-size: var(--text-xl); margin-top: var(--space-lg); margin-bottom: var(--space-xs); }
+.prose ul { margin: var(--space-sm) 0; padding-left: var(--space-md); }
+.prose ul li { margin-block: var(--space-3xs); max-width: var(--measure-prose); }
+.prose ul li::marker { color: var(--color-accent); }
+
+/* ----- Visually-hidden (a11y) ----- */
+.vh {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ----- Disclaimer block ----- */
+.disclaimer {
+  font-size: var(--text-sm);
+  color: var(--color-ink-3);
+  font-style: italic;
+  max-width: var(--measure-prose);
+  line-height: 1.55;
+}
+
+/* ----- Responsive tightenings (universal) ----- */
+@media (max-width: 760px) {
+  .section,
+  .section--tight,
+  .section--lg {
+    padding-block: var(--space-xl);
+  }
+  .hr {
+    margin-block: var(--space-lg);
+  }
+  .step-head {
+    gap: var(--space-sm);
+  }
+  .step-head__num,
+  .step-head__title {
+    font-size: var(--text-xl);
+  }
+}
+
+@media (max-width: 480px) {
+  body {
+    font-size: 0.95rem;
+  }
+  .btn {
+    padding: 0.6875rem 1.25rem;
+    font-size: 0.875rem;
+  }
+  .container {
+    padding-inline: var(--space-sm);
+  }
+}

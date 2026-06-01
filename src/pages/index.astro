@@ -1,0 +1,817 @@
+---
+import BaseLayout from '~/layouts/BaseLayout.astro';
+import { SITE } from '~/lib/site';
+import { organizationLd, localBusinessLd, serviceLd } from '~/lib/seo';
+
+const description =
+  'Blue Mountain Real Estate is a licensed Florida brokerage and property management firm. We help families buy and sell homes, and manage rental and investment properties end-to-end.';
+
+const services = [
+  {
+    icon: 'key',
+    title: 'Buy a Home',
+    body: 'Single-family, condo, or investment — we represent buyers across Florida with market research, financing referrals, negotiation, and closing coordination.',
+    cta: 'Start a search',
+  },
+  {
+    icon: 'sign',
+    title: 'Sell a Home',
+    body: 'Pricing, staging guidance, professional photography, MLS listing, and active negotiation. We market your property to qualified buyers, not just any walk-in.',
+    cta: 'Get a market analysis',
+  },
+  {
+    icon: 'building',
+    title: 'Rental & Property Management',
+    body: 'Tenant screening, leasing, rent collection, maintenance coordination, and monthly owner reporting. Hands-off ownership for landlords and out-of-state investors.',
+    cta: 'Discuss management',
+  },
+] as const;
+
+const reasons = [
+  {
+    title: 'Licensed Florida Brokerage',
+    body: 'Member of Florida Realtors® and the National Association of Realtors. Full E&O coverage, transparent commissions, fiduciary representation.',
+  },
+  {
+    title: 'Owner-Operated',
+    body: 'You work with the principals — not a junior agent buried inside a 200-agent franchise. Decisions get made and communicated quickly.',
+  },
+  {
+    title: 'Sister-Company Network',
+    body: 'Affiliated with Senior Income Properties and Florida Tradition Builders. If your transaction touches construction, renovation, or elder-law strategy, we have the bench.',
+  },
+  {
+    title: 'No High-Pressure Pitch',
+    body: 'We tell you when not to buy, when to wait, when a price is wrong. If the deal isn\'t right for you, it isn\'t right for us.',
+  },
+] as const;
+
+const servicesLd = services.map((s) =>
+  serviceLd({
+    name: s.title,
+    description: s.body,
+    serviceType: s.title,
+  })
+);
+---
+
+<BaseLayout
+  title={undefined}
+  description={description}
+  jsonLd={[organizationLd(), localBusinessLd(), ...servicesLd]}
+>
+  <!-- 1 · HERO (deep navy) -->
+  <section class="hero section--deep">
+    <div class="container hero__inner">
+      <span class="eyebrow">{SITE.tagline}</span>
+      <h1 class="display-l hero__title">
+        Florida real estate, <em>done right.</em>
+      </h1>
+      <p class="hero__lede">
+        Licensed brokerage and property management for Florida buyers, sellers, and landlords.
+        Local expertise, full-service handling, no high-pressure pitch.
+      </p>
+      <div class="hero__cta">
+        <a class="btn btn--primary" href="#contact">Get a Free Consultation</a>
+        <a class="btn btn--secondary" href="#services">Explore Our Services</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2 · SERVICES (blue band) -->
+  <section id="services" class="section">
+    <div class="container">
+      <header class="section-head">
+        <span class="eyebrow">What we do</span>
+        <h2 class="display-m section-head__title">Three things. Done well.</h2>
+        <p class="section-head__lede">
+          Buying, selling, or renting — every track gets full attention from a licensed agent who
+          handles the work themselves, start to finish.
+        </p>
+      </header>
+
+      <ul class="services-grid services-grid--3">
+        {services.map((s) => (
+          <li class="service-card">
+            <span class="service-card__icon" aria-hidden="true">
+              {s.icon === 'key' && (
+                <svg viewBox="0 0 32 32" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="10" cy="22" r="5" />
+                  <path d="M14 18 L26 6" />
+                  <path d="M22 10 L26 6 L28 8" />
+                  <path d="M18 14 L21 11" />
+                </svg>
+              )}
+              {s.icon === 'sign' && (
+                <svg viewBox="0 0 32 32" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="10" y1="6" x2="10" y2="28" />
+                  <rect x="10" y="8" width="16" height="10" />
+                  <path d="M4 28 L28 28" />
+                </svg>
+              )}
+              {s.icon === 'building' && (
+                <svg viewBox="0 0 32 32" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="6" y="4" width="20" height="24" />
+                  <line x1="11" y1="10" x2="13" y2="10" />
+                  <line x1="19" y1="10" x2="21" y2="10" />
+                  <line x1="11" y1="16" x2="13" y2="16" />
+                  <line x1="19" y1="16" x2="21" y2="16" />
+                  <line x1="14" y1="28" x2="14" y2="22" />
+                  <line x1="18" y1="28" x2="18" y2="22" />
+                </svg>
+              )}
+            </span>
+            <h3 class="service-card__title">{s.title}</h3>
+            <p class="service-card__body">{s.body}</p>
+            <a class="service-card__link" href="#contact">{s.cta} →</a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <!-- 3 · WHY US (cream) -->
+  <section id="why-us" class="section">
+    <div class="container">
+      <header class="section-head">
+        <span class="eyebrow">Why Blue Mountain</span>
+        <h2 class="display-m section-head__title">What working with us actually looks like.</h2>
+      </header>
+
+      <ul class="reasons-grid">
+        {reasons.map((r) => (
+          <li class="reason">
+            <span class="reason__check" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M5 12 L10 17 L19 7" />
+              </svg>
+            </span>
+            <div>
+              <h3 class="reason__title">{r.title}</h3>
+              <p class="reason__body">{r.body}</p>
+            </div>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <!-- 4 · ABOUT (blue band) -->
+  <section id="about" class="section">
+    <div class="container container--doc">
+      <header class="section-head">
+        <span class="eyebrow">About us</span>
+        <h2 class="display-m section-head__title">Florida-based. Florida-focused.</h2>
+      </header>
+
+      <div class="prose">
+        <p>
+          Blue Mountain Real Estate is a Florida-licensed residential brokerage and property
+          management firm, founded by AJ Bedizel — a four-state licensed broker and Florida
+          certified general contractor with over 30 years across real estate investments,
+          construction, and property operations.
+        </p>
+        <p>
+          We're part of a small family of sister companies: <a href={SITE.sister.seniorIncomeProperties}>
+          Senior Income Properties</a> handles attorney-directed real estate for elder-law and
+          Medicaid-focused planning, and <a href={SITE.sister.floridaTraditionBuilders}>
+          Florida Tradition Builders</a> handles custom coastal construction. When your transaction
+          touches multiple disciplines, we coordinate them in-house.
+        </p>
+        <p>
+          We work with families, individual investors, and out-of-state owners who want a
+          hands-off relationship with a Florida property. We don't churn listings, we don't
+          chase volume — we work the deals we take all the way through.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5 · CONTACT (cream) -->
+  <section id="contact" class="section">
+    <div class="container">
+      <header class="section-head section-head--center">
+        <span class="eyebrow">Get in touch</span>
+        <h2 class="display-m section-head__title">Connect with our Florida experts.</h2>
+        <p class="section-head__lede">
+          Pick up the phone or send a short email — we'll get back the same business day to talk
+          through your property goals. No obligation, no high-pressure pitch.
+        </p>
+      </header>
+
+      <div class="contact-grid">
+        <article class="channel channel--primary">
+          <span class="eyebrow">Direct line</span>
+          <h3 class="channel__title">Give us a call.</h3>
+          <p class="channel__lede">
+            The fastest way to reach us. Talk to a licensed agent on the first ring during business
+            hours, or leave a message and we'll call back the same business day.
+          </p>
+          <div class="channel__value-row">
+            <a class="channel__value channel__value--phone" href={`tel:${SITE.phoneTel}`}>
+              <span>{SITE.phone}</span>
+            </a>
+            <button
+              type="button"
+              class="channel__copy"
+              data-copy={SITE.phone}
+              aria-label={`Copy phone number ${SITE.phone}`}
+              title="Copy to clipboard"
+            >
+              <svg class="channel__copy-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+                <rect x="9" y="9" width="13" height="13" rx="2" ry="2" />
+                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
+              </svg>
+              <svg class="channel__copy-check" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <path d="M5 13 L9 17 L19 7" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+              <span class="vh">Copy phone number</span>
+              <span class="channel__copy-toast" aria-hidden="true">Copied</span>
+            </button>
+          </div>
+          <dl class="channel__meta">
+            <div>
+              <dt>Hours</dt>
+              <dd>Monday — Friday · 9am – 5pm ET</dd>
+            </div>
+            <div>
+              <dt>Voicemail</dt>
+              <dd>24/7 · returned same business day</dd>
+            </div>
+          </dl>
+        </article>
+
+        <article class="channel">
+          <span class="eyebrow">Email</span>
+          <h3 class="channel__title">Send us a note.</h3>
+          <p class="channel__lede">
+            Prefer writing first? Email a short summary — what you're looking for, your timeline,
+            the area you're focused on. We'll reply by phone, typically within one business day.
+          </p>
+          <div class="channel__value-row">
+            <a class="channel__value channel__value--email" href={`mailto:${SITE.email}?subject=Real%20estate%20inquiry%20%E2%80%94%20Blue%20Mountain%20Real%20Estate`}>
+              <span>{SITE.email}</span>
+            </a>
+            <button
+              type="button"
+              class="channel__copy"
+              data-copy={SITE.email}
+              aria-label={`Copy email address ${SITE.email}`}
+              title="Copy to clipboard"
+            >
+              <svg class="channel__copy-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+                <rect x="9" y="9" width="13" height="13" rx="2" ry="2" />
+                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
+              </svg>
+              <svg class="channel__copy-check" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <path d="M5 13 L9 17 L19 7" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+              <span class="vh">Copy email address</span>
+              <span class="channel__copy-toast" aria-hidden="true">Copied</span>
+            </button>
+          </div>
+          <dl class="channel__meta">
+            <div>
+              <dt>Response</dt>
+              <dd>Within one business day</dd>
+            </div>
+            <div>
+              <dt>Best for</dt>
+              <dd>Sharing details, attaching documents</dd>
+            </div>
+          </dl>
+        </article>
+      </div>
+
+      <div class="prep">
+        <span class="eyebrow">Before the call</span>
+        <h3 class="display-m prep__title">A few things that make the first call more useful.</h3>
+        <p class="prep__lede">
+          None of this is required — but if you have it ready, we can give you a real answer faster.
+        </p>
+        <ul class="prep__list">
+          {[
+            'Buying, selling, renting, or property management',
+            'Property address or the area you\'re focused on',
+            'Approximate budget or price range',
+            'Timeline — when do you want to move',
+            'Financing pre-approval status (for buyers)',
+            'Current rental occupancy (for owners)',
+          ].map((item) => (
+            <li>
+              <span class="prep__check" aria-hidden="true">
+                <svg viewBox="0 0 16 14" width="12" height="10" fill="none">
+                  <path d="M2 8.5 L6 12.5 L14 1.5" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              </span>
+              <span>{item}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<script>
+  document.querySelectorAll<HTMLButtonElement>('[data-copy]').forEach((btn) => {
+    const value = btn.dataset.copy;
+    if (!value) return;
+    let timer: number | undefined;
+    btn.addEventListener('click', async () => {
+      try {
+        await navigator.clipboard.writeText(value);
+        btn.classList.add('is-done');
+        if (timer) window.clearTimeout(timer);
+        timer = window.setTimeout(() => {
+          btn.classList.remove('is-done');
+        }, 1800);
+      } catch {
+        const link = btn.previousElementSibling?.querySelector('span');
+        if (link) {
+          const range = document.createRange();
+          range.selectNodeContents(link);
+          const sel = window.getSelection();
+          sel?.removeAllRanges();
+          sel?.addRange(range);
+        }
+      }
+    });
+  });
+</script>
+
+<style>
+  /* ── Hero ─────────────────────────────────────────── */
+  .hero {
+    padding-block: var(--space-3xl) var(--space-2xl);
+    background:
+      radial-gradient(ellipse at top right, oklch(34% 0.090 250 / 0.55), transparent 55%),
+      var(--color-paper-deep);
+  }
+
+  .hero__inner {
+    max-width: 64rem;
+  }
+
+  .hero .eyebrow {
+    color: oklch(80% 0.085 250);
+  }
+
+  .hero__title {
+    color: var(--color-ink-on-deep);
+    margin-top: var(--space-xs);
+    line-height: 1.08;
+    letter-spacing: -0.015em;
+    max-width: 22ch;
+  }
+
+  .hero__title em {
+    color: oklch(80% 0.090 250);
+    font-style: italic;
+    font-weight: 700;
+  }
+
+  .hero__lede {
+    color: var(--color-ink-on-deep);
+    opacity: 0.82;
+    margin-top: var(--space-md);
+    font-size: var(--text-md);
+    line-height: 1.65;
+    max-width: 56ch;
+  }
+
+  .hero__cta {
+    margin-top: var(--space-lg);
+    display: flex;
+    gap: var(--space-sm);
+    flex-wrap: wrap;
+  }
+
+  /* ── Section head ────────────────────────────────── */
+  .section-head {
+    max-width: 56ch;
+    margin-bottom: var(--space-xl);
+  }
+
+  .section-head--center {
+    margin-inline: auto;
+    text-align: center;
+  }
+
+  .section-head__title {
+    margin-top: var(--space-xs);
+    line-height: 1.12;
+    letter-spacing: -0.01em;
+  }
+
+  .section-head__lede {
+    margin-top: var(--space-md);
+    color: var(--color-ink-2);
+    line-height: 1.65;
+    font-size: var(--text-md);
+  }
+
+  /* ── Services grid ───────────────────────────────── */
+  .services-grid {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: var(--space-lg);
+  }
+
+  .services-grid--3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .service-card {
+    background: var(--color-paper-2);
+    border: var(--rule-hair) solid var(--color-rule-2);
+    border-radius: var(--radius-card);
+    padding: var(--space-lg);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+  }
+
+  .service-card__icon {
+    width: 44px;
+    height: 44px;
+    color: var(--color-accent);
+    display: grid;
+    place-items: center;
+    border: var(--rule-hair) solid var(--color-accent);
+    border-radius: var(--radius-card);
+    margin-bottom: var(--space-2xs);
+  }
+
+  .service-card__title {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: var(--text-lg);
+    color: var(--color-ink);
+    line-height: 1.2;
+  }
+
+  .service-card__body {
+    color: var(--color-ink-2);
+    font-size: var(--text-sm);
+    line-height: 1.6;
+  }
+
+  .service-card__link {
+    margin-top: auto;
+    padding-top: var(--space-sm);
+    color: var(--color-accent);
+    font-weight: 600;
+    font-size: var(--text-sm);
+    border-bottom: 0;
+  }
+
+  .service-card__link:hover {
+    color: var(--color-accent-2);
+  }
+
+  /* ── Reasons grid ────────────────────────────────── */
+  .reasons-grid {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-lg) var(--space-2xl);
+  }
+
+  .reason {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    gap: var(--space-sm);
+    align-items: start;
+  }
+
+  .reason__check {
+    width: 32px;
+    height: 32px;
+    display: grid;
+    place-items: center;
+    background: var(--color-accent);
+    color: var(--color-accent-ink);
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .reason__title {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: var(--text-lg);
+    color: var(--color-ink);
+    margin-bottom: var(--space-3xs);
+  }
+
+  .reason__body {
+    color: var(--color-ink-2);
+    font-size: var(--text-base);
+    line-height: 1.6;
+  }
+
+  /* ── About prose ─────────────────────────────────── */
+  .prose a {
+    color: var(--color-accent);
+    border-bottom: 1px solid currentColor;
+  }
+
+  .prose a:hover {
+    color: var(--color-accent-2);
+  }
+
+  /* ── Contact: channel cards ──────────────────────── */
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-xl);
+    margin-top: var(--space-lg);
+  }
+
+  .channel {
+    background: var(--color-paper-2);
+    border: var(--rule-hair) solid var(--color-rule);
+    border-radius: var(--radius-card);
+    padding: var(--space-xl);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+  }
+
+  .channel--primary {
+    background: var(--color-paper-deep);
+    color: var(--color-ink-on-deep);
+    border-color: var(--color-paper-deep);
+  }
+
+  .channel--primary .eyebrow {
+    color: oklch(80% 0.085 250);
+  }
+
+  .channel--primary .channel__title {
+    color: var(--color-ink-on-deep);
+  }
+
+  .channel__title {
+    font-family: var(--font-display);
+    font-size: var(--text-3xl);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    margin-top: var(--space-xs);
+    color: var(--color-ink);
+  }
+
+  .channel__lede {
+    margin-top: var(--space-xs);
+    font-size: var(--text-base);
+    line-height: 1.6;
+    color: var(--color-ink-2);
+  }
+
+  .channel--primary .channel__lede {
+    color: var(--color-ink-on-deep);
+    opacity: 0.78;
+  }
+
+  .channel__value-row {
+    margin-top: var(--space-md);
+    display: flex;
+    gap: var(--space-2xs);
+    align-items: stretch;
+  }
+
+  .channel__value {
+    flex: 1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--space-md) var(--space-lg);
+    background: var(--color-paper-white);
+    border: var(--rule-hair) solid var(--color-rule);
+    border-radius: var(--radius-card);
+    font-family: var(--font-outlier);
+    font-weight: 500;
+    color: var(--color-ink);
+    transition: border-color var(--dur-med) var(--ease-out), color var(--dur-med) var(--ease-out);
+    min-width: 0;
+    letter-spacing: 0;
+    text-align: center;
+  }
+
+  .channel__value > span {
+    min-width: 0;
+    overflow-wrap: break-word;
+    word-break: break-word;
+  }
+
+  .channel__value--phone {
+    font-size: var(--text-xl);
+    letter-spacing: 0.02em;
+  }
+
+  .channel__value--email {
+    font-size: var(--text-base);
+  }
+
+  .channel__value:hover,
+  .channel__value:focus-visible {
+    border-color: var(--color-accent);
+    color: var(--color-accent);
+  }
+
+  .channel--primary .channel__value {
+    background: oklch(100% 0 0 / 0.06);
+    border-color: oklch(100% 0 0 / 0.18);
+    color: var(--color-ink-on-deep);
+  }
+
+  .channel--primary .channel__value:hover {
+    background: oklch(100% 0 0 / 0.12);
+    border-color: oklch(80% 0.085 250);
+    color: oklch(80% 0.085 250);
+  }
+
+  .channel__copy {
+    position: relative;
+    width: 52px;
+    flex-shrink: 0;
+    background: var(--color-paper-white);
+    border: var(--rule-hair) solid var(--color-rule);
+    border-radius: var(--radius-card);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-ink-2);
+    cursor: pointer;
+    transition:
+      border-color var(--dur-med) var(--ease-out),
+      color var(--dur-med) var(--ease-out),
+      background-color var(--dur-med) var(--ease-out);
+  }
+
+  .channel__copy:hover,
+  .channel__copy:focus-visible {
+    border-color: var(--color-accent);
+    color: var(--color-accent);
+  }
+
+  .channel--primary .channel__copy {
+    background: oklch(100% 0 0 / 0.06);
+    border-color: oklch(100% 0 0 / 0.18);
+    color: var(--color-ink-on-deep);
+  }
+
+  .channel--primary .channel__copy:hover,
+  .channel--primary .channel__copy:focus-visible {
+    background: oklch(100% 0 0 / 0.12);
+    border-color: oklch(80% 0.085 250);
+    color: oklch(80% 0.085 250);
+  }
+
+  .channel__copy-check { display: none; }
+  .channel__copy.is-done { border-color: var(--color-accent); color: var(--color-accent); }
+  .channel__copy.is-done .channel__copy-icon { display: none; }
+  .channel__copy.is-done .channel__copy-check { display: inline-block; }
+
+  .channel__copy-toast {
+    position: absolute;
+    top: -8px;
+    left: 50%;
+    transform: translate(-50%, -8px);
+    background: var(--color-accent);
+    color: var(--color-accent-ink);
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-family: var(--font-outlier);
+    font-size: 0.6875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity var(--dur-med) var(--ease-out), transform var(--dur-med) var(--ease-out);
+    white-space: nowrap;
+  }
+
+  .channel__copy.is-done .channel__copy-toast {
+    opacity: 1;
+    transform: translate(-50%, -100%);
+  }
+
+  .channel__meta {
+    margin: var(--space-md) 0 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-md);
+  }
+
+  .channel__meta dt {
+    font-family: var(--font-outlier);
+    font-size: 0.6875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--color-ink-3);
+    margin-bottom: 4px;
+  }
+
+  .channel--primary .channel__meta dt {
+    color: var(--color-ink-on-deep);
+    opacity: 0.6;
+  }
+
+  .channel__meta dd {
+    margin: 0;
+    font-size: var(--text-sm);
+    color: var(--color-ink-2);
+    line-height: 1.5;
+  }
+
+  .channel--primary .channel__meta dd {
+    color: var(--color-ink-on-deep);
+    opacity: 0.86;
+  }
+
+  /* ── Before-the-call prep checklist ─────────────── */
+  .prep {
+    margin-top: var(--space-2xl);
+    max-width: 60rem;
+    margin-inline: auto;
+    text-align: left;
+  }
+
+  .prep__title {
+    margin-top: var(--space-xs);
+    line-height: 1.18;
+    letter-spacing: -0.01em;
+  }
+
+  .prep__lede {
+    margin-top: var(--space-xs);
+    color: var(--color-ink-2);
+    line-height: 1.65;
+  }
+
+  .prep__list {
+    list-style: none;
+    margin: var(--space-md) 0 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-sm) var(--space-lg);
+  }
+
+  .prep__list li {
+    display: grid;
+    grid-template-columns: 22px 1fr;
+    gap: var(--space-sm);
+    align-items: start;
+    line-height: 1.5;
+    color: var(--color-ink);
+  }
+
+  .prep__check {
+    width: 22px;
+    height: 22px;
+    border-radius: 4px;
+    background: var(--color-accent);
+    border: 1.5px solid var(--color-accent);
+    color: var(--color-accent-ink);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  /* ── Responsive ──────────────────────────────────── */
+  @media (max-width: 960px) {
+    .services-grid--3 {
+      grid-template-columns: 1fr;
+    }
+    .reasons-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 880px) {
+    .contact-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .channel {
+      padding: var(--space-md);
+    }
+    .channel__meta,
+    .prep__list {
+      grid-template-columns: 1fr;
+    }
+    .hero {
+      padding-block: var(--space-2xl) var(--space-xl);
+    }
+  }
+</style>

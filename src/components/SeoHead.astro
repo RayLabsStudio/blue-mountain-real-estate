@@ -1,0 +1,68 @@
+---
+import { SITE } from '~/lib/site';
+import { buildTitle, organizationLd } from '~/lib/seo';
+import JsonLd from './JsonLd.astro';
+
+interface Props {
+  title?: string;
+  description?: string;
+  ogImage?: string;
+  ogType?: 'website' | 'article' | 'profile';
+  noIndex?: boolean;
+  /** Page-specific schemas to inject in addition to the site-wide Organization schema. */
+  jsonLd?: unknown[];
+}
+
+const {
+  title,
+  description = SITE.strapline,
+  ogImage = '/og.png',
+  ogType = 'website',
+  noIndex = false,
+  jsonLd = [],
+} = Astro.props;
+
+const fullTitle = buildTitle(title);
+const canonical = new URL(Astro.url.pathname, SITE.url).toString();
+const ogImageUrl = new URL(ogImage, SITE.url).toString();
+---
+
+<title>{fullTitle}</title>
+<meta name="description" content={description} />
+<link rel="canonical" href={canonical} />
+
+{noIndex && <meta name="robots" content="noindex,nofollow" />}
+
+<meta property="og:type" content={ogType} />
+<meta property="og:site_name" content={SITE.name} />
+<meta property="og:title" content={fullTitle} />
+<meta property="og:description" content={description} />
+<meta property="og:url" content={canonical} />
+<meta property="og:image" content={ogImageUrl} />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:locale" content="en_US" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={fullTitle} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={ogImageUrl} />
+
+<meta name="theme-color" content="#F8F9FB" media="(prefers-color-scheme: light)" />
+<meta name="theme-color" content="#1A2638" media="(prefers-color-scheme: dark)" />
+<meta name="format-detection" content="telephone=yes" />
+<meta name="geo.region" content="US-FL" />
+<meta name="geo.placename" content="Florida" />
+
+<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+  rel="stylesheet"
+  href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap"
+/>
+
+<JsonLd data={organizationLd()} />
+{jsonLd.map((d) => <JsonLd data={d} />)}

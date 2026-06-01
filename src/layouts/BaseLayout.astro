@@ -1,0 +1,72 @@
+---
+import '~/styles/global.css';
+import SeoHead from '~/components/SeoHead.astro';
+import Nav from '~/components/Nav.astro';
+import Footer from '~/components/Footer.astro';
+
+interface Props {
+  title?: string;
+  description?: string;
+  ogImage?: string;
+  ogType?: 'website' | 'article' | 'profile';
+  noIndex?: boolean;
+  jsonLd?: unknown[];
+  /** Optional class on the main element for page-level styling hooks. */
+  mainClass?: string;
+}
+
+const {
+  title,
+  description,
+  ogImage,
+  ogType,
+  noIndex,
+  jsonLd,
+  mainClass,
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+    <SeoHead
+      title={title}
+      description={description}
+      ogImage={ogImage}
+      ogType={ogType}
+      noIndex={noIndex}
+      jsonLd={jsonLd}
+    />
+  </head>
+  <body>
+    <a href="#main" class="skip-link">Skip to main content</a>
+    <Nav />
+    <main id="main" class={mainClass}>
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>
+
+<style is:global>
+  /* Hallmark · genre: editorial · macrostructure: layout-shell
+   * design-system: design.md · designed-as-app
+   */
+  .skip-link {
+    position: absolute;
+    top: -100px;
+    left: 0;
+    background: var(--color-ink);
+    color: var(--color-paper);
+    padding: var(--space-xs) var(--space-md);
+    font-weight: 600;
+    z-index: 100;
+    border-radius: 0 0 var(--radius-card) 0;
+  }
+  .skip-link:focus {
+    top: 0;
+  }
+</style>
