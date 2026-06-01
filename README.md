@@ -2,7 +2,7 @@
 
 > Florida residential brokerage & property management — buy, sell, or rent with a team that handles the whole transaction, end to end.
 
-![Blue Mountain Real Estate — Florida coastal hero](https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&fit=crop&w=1600&q=80)
+![Blue Mountain Real Estate — hero section](docs/hero.png)
 
 A fast, static marketing site for a licensed Florida real estate brokerage. Built with Astro, it presents the firm's services (buying, selling, rental & property management), credentials, and a low-friction email contact flow — all in a coastal-luxury visual language.
 
