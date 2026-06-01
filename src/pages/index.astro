@@ -433,7 +433,9 @@ const servicesLd = services.map((s) =>
   }
 
   .hero__inner {
-    max-width: 60rem;
+    /* Full container width, left-aligned to the page gutter (matches the nav
+     * + trust strip). Headline/lede cap their own width by character count, so
+     * the text stays tight without a centered narrow column. */
     padding-bottom: var(--space-2xl);
   }
 
